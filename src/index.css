@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+/* ChurnShield design tokens — the Elite brand system shared with Elite's
+   other apps. Components use token classes only. The @theme values below
+   are the DARK theme — the brand default (black / midnight-blue with the
+   electric-blue accent #35A7FF). The light theme is a token override under
+   [data-theme="light"], further down; components never change between
+   themes. */
+@theme {
+  --color-app: #020617;
+  --color-surface: #0f172a;
+  --color-raised: #1e293b;
+  --color-overlay: #0f172a;
+  --color-line: #1e293b;
+  --color-strong: #334155;
+  --color-primary: #f1f5f9;
+  --color-secondary: #cbd5e1;
+  --color-muted: #94a3b8;
+  --color-disabled: #64748b;
+  --color-accent: #35a7ff;
+  --color-accent-hover: #66c2ff;
+  --color-onaccent: #03263e;
+  --color-bright: #35a7ff;
+  --color-success: #34d399;
+  --color-warning: #fbbf24;
+  --color-danger: #f87171;
+  --color-danger-fill: #dc2626;
+  --color-urgent: #fb7185;
+  --color-sky: #38bdf8;
+  --color-orange: #fb923c;
+  /* Text on bright/status fills (status badges, count pills). Dark navy on
+     the vivid dark-theme fills; flips to white in the light theme, whose
+     fills step deeper to hold contrast. */
+  --color-onbright: #020617;
+
+  --font-sans: "Inter", -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+/* Light theme — an explicit user choice (dark stays the default).
+   The same Elite system inverted: light blue-grey surfaces, a white card
+   step, midnight-blue text. The accent fill (#35A7FF) is identical in both
+   themes, so it is not redeclared; semantic colors step deeper than their
+   dark-theme values so their text forms keep AA contrast on light
+   surfaces, and --color-onbright flips to white so badge text holds on
+   those deeper fills. Unlayered on purpose: it must override the layered
+   @theme variables above. */
+[data-theme="light"] {
+  color-scheme: light;
+  --color-app: #e9eef5;
+  --color-surface: #ffffff;
+  --color-raised: #eef2f7;
+  --color-overlay: #ffffff;
+  --color-line: #d5dee9;
+  --color-strong: #94a3b8;
+  --color-primary: #0f172a;
+  --color-secondary: #334155;
+  --color-muted: #64748b;
+  --color-disabled: #94a3b8;
+  --color-bright: #0284c7;
+  --color-success: #047857;
+  --color-warning: #b45309;
+  --color-danger: #dc2626;
+  --color-urgent: #e11d48;
+  --color-sky: #0284c7;
+  --color-orange: #ea580c;
+  --color-onbright: #ffffff;
+}
+
+html {
+  background: var(--color-app);
+}
+
+body {
+  background: var(--color-app);
+  color: var(--color-primary);
+  font-family: var(--font-sans);
+  font-feature-settings: "tnum";
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Visible focus everywhere */
+:focus-visible {
+  outline: 2px solid var(--color-bright);
+  outline-offset: 2px;
+}
+
+@keyframes cs-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
+}
+.skeleton-pulse {
+  animation: cs-pulse 1.2s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .skeleton-pulse {
+    animation: none;
+  }
+}

@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      // Theme init (runs before first paint — no flash of the wrong theme).
+      // Dark is the Elite brand default; only a saved choice can override it.
+      try {
+        document.documentElement.dataset.theme =
+          localStorage.getItem('churnshield-theme') === 'light' ? 'light' : 'dark';
+      } catch (e) {
+        document.documentElement.dataset.theme = 'dark';
+      }
+    </script>
+    <title>ChurnShield — Member Retention for Whop Creators</title>
+    <meta name="description" content="ChurnShield watches your Whop memberships and payments, flags members who are about to churn — cancel scheduled, card failed, gone quiet — and turns each one into a save task with a ready-to-send message draft. It reports only your own real numbers." />
+    <meta property="og:title" content="ChurnShield" />
+    <meta property="og:description" content="The member-save system for Whop creators: cancel-save, failed-card recovery and silent-member radar, driven by your real Whop webhook events." />
+    <meta property="og:type" content="website" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
